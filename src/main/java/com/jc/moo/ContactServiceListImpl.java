@@ -3,7 +3,7 @@ package com.jc.moo;
 import java.util.ArrayList;
 
 import com.google.gson.Gson;
-import com.jc.moo.Response.HttpResponse;
+import com.jc.moo.Response.WebResponse;
 
 public class ContactServiceListImpl implements ContactService {
 	
@@ -27,10 +27,10 @@ public class ContactServiceListImpl implements ContactService {
 	public Response getContactBySurname(String surname) {
 		for (Contact contact : contactList) {
 			if (contact.getSurname().equals(surname)) {
-				return new Response(HttpResponse.SUCCESS, new Gson().toJsonTree(contact));
+				return new Response(WebResponse.SUCCESS, new Gson().toJsonTree(contact));
 			}
 		}
-		return new Response(HttpResponse.FAIL, "No contacts found with surname: " + surname);
+		return new Response(WebResponse.FAIL, "No contacts found with surname: " + surname);
 	}
 
 	@Override

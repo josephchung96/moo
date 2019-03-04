@@ -4,35 +4,35 @@ import com.google.gson.JsonElement;
 
 public class Response {
 	
-	public enum HttpResponse {
+	public enum WebResponse {
 		ERROR, 
 		FAIL, 
 		SUCCESS
 	}
 	
-	private HttpResponse status;
+	private WebResponse status;
 	private String message;
 	private JsonElement jsonMessage;
 	
-	public Response(HttpResponse status) {
+	public Response(WebResponse status) {
 		this.status = status;
 	}
 	
-	public Response(HttpResponse status, String message) {
+	public Response(WebResponse status, String message) {
 		this.status = status;
 		this.message = message;
 	}
 	
-	public Response(HttpResponse status, JsonElement jsonMessage) {
+	public Response(WebResponse status, JsonElement jsonMessage) {
 		this.status = status;
 		this.jsonMessage = jsonMessage;
 	}
 	
-	public HttpResponse getStatus() {
+	public WebResponse getStatus() {
 		return status;
 	}
 
-	public void setStatus(HttpResponse status) {
+	public void setStatus(WebResponse status) {
 		this.status = status;
 	}
 

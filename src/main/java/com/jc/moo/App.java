@@ -3,11 +3,11 @@ package com.jc.moo;
 import static spark.Spark.*;
 
 import com.google.gson.Gson;
-import com.jc.moo.Response.HttpResponse;
+import com.jc.moo.Response.WebResponse;
 
 public class App {
 	
-    public static void main( String[] args ) {
+	public App() {
     	final ContactService contactService = new ContactServiceListImpl();
     	
     	before((request, response) -> response.type("application/json"));
@@ -20,7 +20,11 @@ public class App {
     	
     	get("add/contact", (req, res) -> {
     		contactService.addUser(new Contact("Joe", "Johnson")); // adding a hard-coded contact
-    		return new Gson().toJson(new Response(HttpResponse.SUCCESS, "Contact successfully added"));
-    	});
+    		return new Gson().toJson(new Response(WebResponse.SUCCESS, "Contact successfully added"));
+    	});	
+	}
+	
+    public static void main( String[] args ) {
+    	new App();
     }
 }
