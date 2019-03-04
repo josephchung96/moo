@@ -9,8 +9,8 @@ public class JsonTransformer implements ResponseTransformer {
 	private Gson gson = new Gson();
 
 	@Override
-	public String render(Object arg0) throws Exception {
-		return gson.toJson(arg0);
+	public String render(Object obj) throws Exception {
+		return gson.toJson(obj);
 	}
 
 }
