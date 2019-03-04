@@ -8,7 +8,7 @@ public interface ContactService {
 	
 	public ArrayList<Contact> getUsers();
 	
-	public Contact getContactBySurname(String surname);
+	public Response getContactBySurname(String surname);
 	
 	public void deleteUser(Contact contact);
 

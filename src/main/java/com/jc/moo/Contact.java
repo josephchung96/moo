@@ -10,6 +10,11 @@ public class Contact {
 	private String city;
 	private String postcode;
 	
+	public Contact(String forename, String surname) {
+		this.forename = forename;
+		this.surname = surname;
+	}
+	
 	public Contact(String forename, String surname, String phoneNumber, String address1, String city, String postcode) {
 		this.forename = forename;
 		this.surname = surname;

@@ -2,6 +2,9 @@ package com.jc.moo;
 
 import java.util.ArrayList;
 
+import com.google.gson.Gson;
+import com.jc.moo.Response.HttpResponse;
+
 public class ContactServiceListImpl implements ContactService {
 	
 	private ArrayList<Contact> contactList;
@@ -21,13 +24,13 @@ public class ContactServiceListImpl implements ContactService {
 	}
 
 	@Override
-	public Contact getContactBySurname(String surname) {
+	public Response getContactBySurname(String surname) {
 		for (Contact contact : contactList) {
 			if (contact.getSurname().equals(surname)) {
-				return contact;
+				return new Response(HttpResponse.SUCCESS, new Gson().toJsonTree(contact));
 			}
 		}
-		return null;
+		return new Response(HttpResponse.FAIL, "No contacts found with surname: " + surname);
 	}
 
 	@Override
