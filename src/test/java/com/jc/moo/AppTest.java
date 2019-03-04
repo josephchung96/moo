@@ -34,7 +34,9 @@ public class AppTest extends TestCase {
     public void testApp() {
     	GetMethod welcomeGetMethod = testServer.get("/contact", false);
     	GetMethod addContactGetMethod = testServer.get("add/contact", false);
+    	GetMethod addContactGetMethod2 = testServer.get("add/Joe/Brown", false);
     	GetMethod searchGetMethod = testServer.get("contact/Johnson", false);
+    	GetMethod searchGetMethod2 = testServer.get("contact/Brown", false);
     	try {
 			HttpResponse httpResponse = testServer.execute(welcomeGetMethod);
 			assertEquals("Welcome to the Joe Chung's Address Book API", 
@@ -48,6 +50,15 @@ public class AppTest extends TestCase {
 			httpResponse = testServer.execute(searchGetMethod);
 			assertEquals("{\"status\":\"SUCCESS\",\"jsonMessage\":{\"forename\":\"Joe\",\"surname\":\"Johnson\"}}", 
 					new String(httpResponse.body())); // check if the user details are displayed back
+			httpResponse = testServer.execute(searchGetMethod2);
+			assertEquals("{\"status\":\"FAIL\",\"message\":\"No contacts found with surname: Brown\"}", 
+					new String(httpResponse.body()));
+			httpResponse = testServer.execute(addContactGetMethod2);
+			assertEquals("{\"status\":\"SUCCESS\",\"jsonMessage\":{\"Successfully added Joe Brown\"}}", 
+					new String(httpResponse.body()));
+			httpResponse = testServer.execute(searchGetMethod2);
+			assertEquals("{\"status\":\"SUCCESS\",\"jsonMessage\":{\"forename\":\"Joe\",\"surname\":\"Brown\"}}", 
+					new String(httpResponse.body()));
 		} catch (HttpClientException e) {
 			e.printStackTrace();
 			fail("Error connecting");

@@ -22,6 +22,11 @@ public class App {
     		contactService.addUser(new Contact("Joe", "Johnson")); // adding a hard-coded contact
     		return new Gson().toJson(new Response(WebResponse.SUCCESS, "Contact successfully added"));
     	});	
+    	
+    	get("add/:forename/:surname", (req, res) -> {
+    		contactService.addUser(new Contact(req.params(":forename"), req.params(":surname")));
+    		return new Gson().toJson(new Response(WebResponse.SUCCESS, "Successfully added " + req.params(":forename") + " " + req.params(":surname")));
+    	});
 	}
 	
     public static void main( String[] args ) {
